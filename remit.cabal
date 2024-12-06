@@ -1,0 +1,57 @@
+cabal-version:      3.0
+name:               remit
+-- PVP summary:     +-+------- breaking API changes
+--                  | | +----- non-breaking API additions
+--                  | | | +--- code changes with no API change
+version:            0.1.0.0
+synopsis:           "Send letters to closedOnes"
+license:            MIT
+license-file:       LICENSE
+author:             guhanarul
+maintainer:         guhanout@gmail.com
+category:           Web
+build-type:         Simple
+
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library remitT
+    import: warnings
+    hs-source-dirs: src
+    ghc-options:
+        -Wall -Werror
+    exposed-modules:
+      Backend.Server
+      Backend.User
+      Core.Turing
+    build-depends:   
+        base           ^>=4.20.0.0
+        ,text
+        ,mtl
+        ,containers
+        ,aeson
+        ,wai
+        ,http-types
+        ,bytestring
+        ,unordered-containers
+    default-language: Haskell2010
+
+executable remit
+    import:           warnings
+    hs-source-dirs:   exe
+    ghc-options:
+        -Wall -Werror
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.20.0.0
+        ,remitT
+        ,text
+        ,mtl
+        ,containers
+        ,aeson
+        ,wai
+        ,http-types
+        ,warp
+    default-language: Haskell2010
